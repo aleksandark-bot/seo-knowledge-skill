@@ -1,0 +1,9 @@
+{
+  "skill": "SEO-knowledge",
+  "label": "SEO knowledge base",
+  "raw": "/home/david/Desktop/SEO-Insights/data/insights-raw.json",
+  "manifest": "/home/david/Desktop/SEO-Insights/data/manifest.json",
+  "universal_dir": "/home/david/Desktop/temp/seo-universal",
+  "transcripts_md": "/home/david/Desktop/SEO-Insights/transcripts-md",
+  "transcripts_html": "/home/david/Desktop/SEO-Insights/transcripts"
+}
