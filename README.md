@@ -22,8 +22,9 @@ curl -fsSL -H "Authorization: Bearer $PABAU_REPO_TOKEN" -H "Accept: application/
 
 `install.sh` clones the repo to `~/.claude/skills/SEO-knowledge`, or fast-forwards an existing
 clone. It reads the token from `$PABAU_REPO_TOKEN`, else from
-`~/.claude/factcheck-flow/.repo-token` (where the factcheck-flow installer saves it), and
-sends it as a one-off header, so it is never written into the clone's `.git/config`. While
+`~/.claude/factcheck-flow/.repo-token` (where the factcheck-flow installer saves it), then
+the factcheck-flow cluster token, and sends it as a one-off header, so it is never written
+into the clone's `.git/config`. It never prompts for a login. While
 the repo is public, a plain `git clone https://github.com/aleksandark-bot/seo-knowledge-skill.git ~/.claude/skills/SEO-knowledge`
 also works.
 
