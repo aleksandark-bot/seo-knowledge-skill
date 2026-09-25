@@ -7,9 +7,25 @@ tokens of retrieval.
 
 ## Install
 
+**The normal route: the factcheck-flow install command David sends the team.** It installs
+this skill alongside /fact and /SEO, and its auto-updater then keeps the skill current on
+its own — at most once an hour, when Claude Code starts. Nothing else to run.
+
+On its own, with the read token David gives out (needed once this repo is private):
+
 ```bash
-git clone https://github.com/aleksandark-bot/seo-knowledge-skill.git ~/.claude/skills/SEO-knowledge
+export PABAU_REPO_TOKEN=<token>
+curl -fsSL -H "Authorization: Bearer $PABAU_REPO_TOKEN" -H "Accept: application/vnd.github.raw" \
+  https://api.github.com/repos/aleksandark-bot/seo-knowledge-skill/contents/install.sh \
+  -o /tmp/sk-install.sh && bash /tmp/sk-install.sh
 ```
+
+`install.sh` clones the repo to `~/.claude/skills/SEO-knowledge`, or fast-forwards an existing
+clone. It reads the token from `$PABAU_REPO_TOKEN`, else from
+`~/.claude/factcheck-flow/.repo-token` (where the factcheck-flow installer saves it), and
+sends it as a one-off header, so it is never written into the clone's `.git/config`. While
+the repo is public, a plain `git clone https://github.com/aleksandark-bot/seo-knowledge-skill.git ~/.claude/skills/SEO-knowledge`
+also works.
 
 Then restart Claude Code. The skill appears as **SEO-knowledge**; Claude picks it up for any
 SEO-shaped task. To make it fire every time, add to your `~/.claude/CLAUDE.md`:
@@ -19,12 +35,11 @@ SEO-shaped task. To make it fire every time, add to your `~/.claude/CLAUDE.md`:
 
 ## Update
 
-```bash
-git -C ~/.claude/skills/SEO-knowledge pull
-```
-
-`install.sh` in this repo does clone-or-pull for you. The repo is republished automatically
-whenever the base gains new sources, so a pull always gets the latest doctrine and insights.
+Automatic if you installed factcheck-flow: its session-start updater fast-forwards this clone
+at most hourly. It never touches a clone with local changes or unpushed commits. By hand, run
+`install.sh` again (`bash ~/.claude/skills/SEO-knowledge/install.sh`); it picks up the saved
+token the same way. The repo is republished automatically whenever the base gains new
+sources, so an update always gets the latest doctrine and insights.
 
 ## Using it by hand
 
