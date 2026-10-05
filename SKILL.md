@@ -42,6 +42,13 @@ theme only — check the size first, and never for content quality, content prod
 keyword research or strategy. Insights are marked **core** (act on it, `***`), **useful**
 (`**`), or **context** (`*`); ids are `NN.k` (source NN, k-th insight).
 
+**A site's Domain Rating: always the Ahrefs API.** Whenever a task needs DR (link or PR
+prospects, competitor or SERP strength, a velocity forecast), fetch it live:
+`python3 ~/.claude/skills/SEO-knowledge/scripts/ahrefs_dr.py dr a.com b.com` (`-f list.txt --csv`
+for bulk). Never estimate DR, quote it from memory or a source, or swap in DataForSEO rank or
+Semrush Authority Score. On a key error, stop and say so (setup: README). The doctrine still
+decides how much DR counts. Anything published credits "Domain Rating by Ahrefs", linked to ahrefs.com.
+
 This skill is knowledge, not house style. It does **not** replace the Pabau content
 guides in `~/.claude/factcheck-flow/guides/` — those own voice, block markup, visuals
 and the Pabau facts, and they still win on any conflict about *how Pabau content is

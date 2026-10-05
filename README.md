@@ -57,12 +57,32 @@ python3 $KB grep "striking distance"
 
 Python 3 only, no dependencies.
 
+## Domain Rating (Ahrefs)
+
+The skill gets every site's DR from Ahrefs' free DR API through `scripts/ahrefs_dr.py`. It needs
+a free key once per machine:
+
+1. Sign up for a free Ahrefs account, then go to Account settings → API keys → generate an APIv3 key.
+2. Save it as one line, `AHREFS_API_KEY=<key>`, in `~/.pabau-ahrefs/.env` (or export `AHREFS_API_KEY`).
+   Never commit it.
+3. Check it: `python3 ~/.claude/skills/SEO-knowledge/scripts/ahrefs_dr.py check`.
+
+```bash
+python3 ~/.claude/skills/SEO-knowledge/scripts/ahrefs_dr.py dr pabau.com zenoti.com   # one line per site
+python3 ~/.claude/skills/SEO-knowledge/scripts/ahrefs_dr.py dr -f domains.txt --csv   # bulk
+```
+
+Only DR is free; backlinks, keywords and traffic still come from DataForSEO. Any published DR
+must credit "Domain Rating by Ahrefs" with a link to ahrefs.com
+([license](https://ahrefs.com/legal/domain-rating-license)).
+
 ## What is in here
 
 | Path | What |
 |---|---|
 | `SKILL.md` | The instructions Claude loads: a short doctrine of load-bearing rules plus the retrieval protocol |
 | `scripts/kb.py` | The query tool |
+| `scripts/ahrefs_dr.py` | Live Domain Rating from Ahrefs' free API (needs a free key, see above) |
 | `data/insights.jsonl` | Every insight, one per line (generated) |
 | `data/sources.json`, `references/sources.md` | The sources with URLs (generated) |
 | `references/full/*.md` | Whole-theme write-ups for a deliberate deep read (generated) |
